@@ -1,0 +1,82 @@
+plugins {
+	id 'java'
+	id 'war'
+
+	id 'eclipse-wtp'
+	id 'org.springframework.boot' version '3.4.3'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+eclipse {
+	wtp {
+		facet {
+			facet name: 'jst.web', version: '6.0'
+			facet name: 'jst.java', version: '21'
+		}
+		component {
+			contextPath = '/'
+		}
+	}
+}
+
+group = 'org.zerock'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+configurations {
+	compileOnly.extendsFrom(annotationProcessor)
+	testCompileOnly.extendsFrom(testAnnotationProcessor)
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	
+	annotationProcessor 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+		
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	// runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
+	
+	runtimeOnly('com.oracle.database.jdbc:ojdbc11-production') {
+		exclude group: 'com.oracle.database.ha', 		module: 'simplefan'
+		exclude group: 'com.oracle.database.ha', 		module: 'ons'
+		exclude group: 'com.oracle.database.jdbc', 	module: 'rsi'
+		exclude group: 'com.oracle.database.xml', 		module: 'xdb'
+		exclude group: 'com.oracle.database.xml', 		module: 'xmlparserv2'
+	}
+		
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	testImplementation 'org.springframework.security:spring-security-test'
+
+	// ============================
+	// 1. Configure the JSP Template Engine
+	// ============================
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
+	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

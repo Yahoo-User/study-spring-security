@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Home</title>
+
+    <style>
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>/static/index.html</h3>
+    <hr>
+    
+    <ol>
+        <li><h3><a href="/security/user" target="_security_user">User</a> <span>(All for *Anonymous)</span></h3></li>
+        <li><h3><a href="/security/member" target="_security_member">Member</a> <span>(All for *Authenticated)</span></h3></li>
+        <li><h3><a href="/security/manager" target="_security_manager">Manager</a> <span>(only for *Authencated and *ROLE_MANAGER)</span></h3></li>
+        <li><h3><a href="/security/admin" target="_security_admin">Admin</a> <span>(only for *Authencated and *ROLE_ADMIN)</span></h3></li>
+    </ol>
+    <hr>
+    
+    <ol>
+        <li><h3><a href="/security/" target="_spring_security_context">SPRING_SECURITY_CONTEXT</a> <span>(All for *Authenticated)</span></h3></li>
+    </ol>
+    <hr>
+    
+    <ol>
+        <li><h3><a href="/login" 	target="_login"	>Default Spring Security Login</a> <span>(All *Permited)</span></h3></li>
+        <li><h3><a href="/logout" 	target="_logout"	>Default Spring Security Logout</a> <span>(All *Permited)</span></h3></li>
+    </ol>
+    <hr>
+    
+    <ol>
+        <li><h3><a href="/tools/mappings" 	target="_mappings">Request Mapping Table</a> <span>(All *Permited)</span></h3></li>
+        <li><h3><a href="/tools/beans" 			target="_beans">All Beans in Spring Context</a> <span>(All *Permited)</span></h3></li>
+    </ol>
+
+</body>
+
+</html>
+
+
